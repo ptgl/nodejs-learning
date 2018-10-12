@@ -18,11 +18,23 @@ myApp.controller('myCtrl', function($scope, $http){
     var req = {
       method:'POST',
       url: host + '/add',
-      data: {'name':$scope.name}
+      data: {'name':$scope.name},
+      params:{'type': $scope.type}
   }
     $http(req).then(function(result){
-      $scope.message = result.data.name;
+      $scope.message = `Added ${result.data.name}`;
       console.log(result);
+    })
+  }
+
+  $scope.update = function(){
+    var req = {
+      method:'PUT',
+      url: host + '/update/' + $scope.name
+  }
+    $http(req).then(function(result){
+      $scope.message = `Updated ${result.data.newName}`;
+      console.log(result.data);
     })
   }
 

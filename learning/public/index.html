@@ -14,7 +14,15 @@
     <p>{{message}}</p>
 
   Name:<input ng-model="name">
+  Type:
+  <select ng-model="type">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </select>
   <button ng-click="add()">Add</button>
+  <button  ng-click="update()">Edit</button>
 
   </body>
 

@@ -19,8 +19,17 @@ app.get('/test', (req, res) => {
 
 app.post('/add', bodyParser.json(),function (req, res) {
   var body = JSON.stringify(req.body);
+  var quey = JSON.stringify(req.query);
   console.log(`BODY: ${body}`);
+  console.log(`Query ${quey}`)
   res.send(body)
 })
+
+app.put('/update/:newName', bodyParser.json(), function (req, res) {
+  var params = JSON.stringify(req.params);
+  console.log(`param: ${params}`);
+  res.send(params)
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
