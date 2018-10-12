@@ -2,16 +2,20 @@
 <html>
 
   <head>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
-    <script src="../script.js"></script>
+    <script src="./js/script.js"></script>
   </head>
 
   <body  ng-app="myApp" ng-controller="myCtrl">
     <h1>Hello Plunker {{name}}!</h1>
     <p>{{1+2}}</p>
-    <button ng-click="send()">Send</button>
+    <button ng-click="send()">Get Data</button>
     <p>{{message}}</p>
+
+  Name:<input ng-model="name">
+  <button ng-click="add()">Add</button>
+
   </body>
 
 </html>
