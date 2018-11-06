@@ -1,8 +1,15 @@
-var myApp = angular.module("myApp", []);
+var myApp = angular.module("myApp", ['ngRoute']);
 
-myApp.controller('myCtrl', function($scope, $http){
+myApp.controller('myCtrl', function($scope, $http, $location){
   const host = "http://localhost:3000";
   $scope.message = 'my World';
+
+  $scope.gotoView = function(path){
+    // ex: /view1 or /view2 
+    document.getElementById('angular-route').style.color = "red";
+    $location.path(path);
+  }
+
   $scope.send = function(){
     var req = {
       'method':'GET',

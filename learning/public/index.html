@@ -4,7 +4,10 @@
   <head>
     <link rel="stylesheet" href="style.css">
    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/routing.js"></script>
+    <script src="./js/controller2.js"></script>
   </head>
 
   <body  ng-app="myApp" ng-controller="myCtrl">
@@ -23,6 +26,15 @@
   </select>
   <button ng-click="add()">Add</button>
   <button  ng-click="update()">Edit</button>
+
+  <hr/>
+  <h1 id="angular-route">Angular routing</h1>
+  <a href="#!view1">view1</a>
+  <a href="#!view2">view2</a>
+  
+  path:<input ng-model="path"/> <button ng-click="gotoView(path)">go to view</button>
+  
+  <div ng-view></div>
 
   </body>
 
