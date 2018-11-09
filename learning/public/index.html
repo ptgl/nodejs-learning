@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="style.css">
    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+   <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/routing.js"></script>
     <script src="./js/controller2.js"></script>
@@ -26,6 +27,13 @@
   </select>
   <button ng-click="add()">Add</button>
   <button  ng-click="update()">Edit</button>
+
+  <hr/>
+  <h2>UI Router</h2>
+  <button ng-click="gotoWelcome()">go to welcome</button>
+  
+  <ui-view></ui-view>
+
 
   <hr/>
   <h1 id="angular-route">Angular routing</h1>

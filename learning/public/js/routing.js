@@ -1,6 +1,6 @@
-myApp.config(['$locationProvider', '$routeProvider',
-function($locationProvider, $routeProvider){
-    $routeProvider
+myApp.config(['$locationProvider', '$routeProvider', '$stateProvider',
+function($locationProvider, $routeProvider, $stateProvider){
+   $routeProvider
     .when('/view1',{
         templateUrl: './view/view1.html'
     })
@@ -8,6 +8,17 @@ function($locationProvider, $routeProvider){
       templateUrl: './view/view2.html',
       controller: 'myController2'
   })
-
-
+ 
+ $stateProvider.state('welcome',{
+    templateUrl: "./view/welcome.html",
+    controller: function($scope, $state){
+        $scope.state = '';
+        $scope.gotoState = function(state){
+            $state.go(state);
+          }
+    }
+  })
+  .state('view1',{
+    templateUrl: "./view/view1.html"
+  })
 }])
