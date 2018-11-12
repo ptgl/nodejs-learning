@@ -1,6 +1,4 @@
-var myApp = angular.module("myApp", ['ngRoute','ui.router']);
-
-myApp.controller('myCtrl', function($scope, $http, $location, $state){
+module.exports = ['$scope', '$http', '$location', '$state', function($scope, $http, $location, $state){
   const host = "http://localhost:3000";
   $scope.message = 'my World';
   $scope.state = '';
@@ -49,4 +47,4 @@ myApp.controller('myCtrl', function($scope, $http, $location, $state){
     })
   }
 
-})
+}]
