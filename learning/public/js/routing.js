@@ -12,12 +12,12 @@ export function routing($locationProvider, $routeProvider, $stateProvider){
   
   $stateProvider.state('welcome',{
      templateUrl: "./view/welcome.html",
-     controller: function($scope, $state){
+     controller: ['$scope','$state',function($scope, $state){
          $scope.state = '';
          $scope.gotoState = function(state){
              $state.go(state);
            }
-     }
+     }]
    })
    .state('view1',{
      templateUrl: "./view/view1.html"

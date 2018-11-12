@@ -1,3 +1,5 @@
-myApp.controller('myController2',function($scope, $routeParams){
+
+myController2.$inject = ['$scope', '$routeParams'];
+export function myController2($scope, $routeParams){
     $scope.myName = $routeParams.name;
-})
+}
