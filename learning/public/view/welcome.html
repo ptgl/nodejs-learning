@@ -1,3 +1,10 @@
 <h1>Welcome to UI Router</h1>
 state:<input ng-model="state"/>
 <button ng-click="gotoState(state)">go to state</button>
+
+<ul>
+    <li ng-repeat="hero in heros">
+        <a ui-sref="welcome.detail({id: hero.id, name: hero.name})">{{hero.name}} </a>
+    </li>
+</ul>
+<ui-view></ui-view>
