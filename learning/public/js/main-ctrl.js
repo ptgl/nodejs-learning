@@ -1,7 +1,15 @@
 module.exports = ['$scope', '$http', '$location', '$state', function($scope, $http, $location, $state){
+  
+  this.$onInit = function(){
+    $state.go('manage');
+  }
+  
   const host = "http://localhost:3000";
   $scope.message = 'my World';
   $scope.state = '';
+
+
+
   $scope.gotoView = function(path){
     // ex: /view1 or /view2 
     document.getElementById('angular-route').style.color = "red";
@@ -10,6 +18,10 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
 
   $scope.gotoWelcome = function(){
     $state.go('welcome');
+  }  
+
+  $scope.gotoSate = function(name,param){
+    $state.go(name, param);
   }  
 
   $scope.send = function(){

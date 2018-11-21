@@ -8,7 +8,7 @@ import {routing} from "./js/routing";
 import {myController2} from "./js/controller2";
 import {detailCtrl} from "./js/detailCtrl";
 
-const myCtrl = require("./js/script");
+const myCtrl = require("./js/main-ctrl");
 
 var moduleName = "myApp";
 

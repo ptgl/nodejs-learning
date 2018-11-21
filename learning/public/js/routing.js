@@ -1,6 +1,7 @@
 "use strict";
 
 import {HEROS} from "./const"
+import navbarView from "../view/common/navbar.html"
 
 routing.$inject = ['$locationProvider', '$routeProvider', '$stateProvider'];
 export function routing($locationProvider, $routeProvider, $stateProvider){
@@ -35,5 +36,22 @@ export function routing($locationProvider, $routeProvider, $stateProvider){
    })
    .state('view1',{
      templateUrl: "./view/view1.html"
+   }).state('manage',{
+      views:{
+        "navbar":{
+          templateUrl: './view/common/navbar.html'
+        }
+      }
+   }).state('manage.listView',{
+    url: '/manage/:link',
+    views:{
+      'tabledata@':{
+        templateUrl: function($stateParams){
+          return './view/manage-list/' + $stateParams.link + '-list.html'
+      }
+    }
+    
+    }
+     
    })
  }
