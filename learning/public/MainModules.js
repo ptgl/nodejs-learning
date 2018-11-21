@@ -1,6 +1,9 @@
 import angular from "angular";
 import "angular-route";
 import "@uirouter/angularjs/release/angular-ui-router.min.js";
+import "font-awesome/css/font-awesome.min.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import {routing} from "./js/routing";
 import {myController2} from "./js/controller2";
 import {detailCtrl} from "./js/detailCtrl";

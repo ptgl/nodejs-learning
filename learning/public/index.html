@@ -12,6 +12,9 @@
   </head>
 
   <body  ng-app="myApp" ng-controller="myCtrl">
+    <div class="container">
+
+    <hr/>
     <h1>Hello Plunker {{name}}!</h1>
     <p>{{1+2}}</p>
     <button ng-click="send()">Get Data</button>
@@ -25,10 +28,11 @@
     <option value="mercedes">Mercedes</option>
     <option value="audi">Audi</option>
   </select>
-  <button ng-click="add()">Add</button>
+  <button ng-click="add()"><i class="fa fa-plus"></i>Add</button>
   <button  ng-click="update()">Edit</button>
 
   <hr/>
+
   <h2>UI Router</h2>
   <button ng-click="gotoWelcome()">go to welcome</button>
   
@@ -43,7 +47,7 @@
   path:<input ng-model="path"/> <button ng-click="gotoView(path)">go to view</button>
   
   <div ng-view></div>
-
+</div>
   </body>
 
 </html>
