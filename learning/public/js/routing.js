@@ -48,10 +48,15 @@ export function routing($locationProvider, $routeProvider, $stateProvider){
       'tabledata@':{
         templateUrl: function($stateParams){
           return './view/manage-list/' + $stateParams.link + '-list.html'
+      },
+      controllerProvider: function($stateParams){
+        return $stateParams.link + 'Ctrl';
       }
+      
     }
     
     }
+    
      
    })
  }

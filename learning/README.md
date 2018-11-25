@@ -5,13 +5,13 @@
 * Practice AngularJS Router
 
 # Guide
-* Install Express nodejs: _npm install express --save_
-* Install webpack: 
+* Install Express nodejs: npm install express --save
+* Install webpack: npm i -g webpack webpack-cli
 * Install babel: npm install babel-core babel-loader babel-preset-es2015 --save-dev
-* Build bundle with webpack.config.js: _webpack_
-* Start server: _$ node server.js_
-* Index url: _localhost:3000_
+* Build bundle with webpack.config.js: webpack
+* Start server: node server.js
+* Index url: localhost:3000
 
 # Note
 * export - import: ES6
-* module.exports - require: nodeJS
+* module.exports - require: ES5

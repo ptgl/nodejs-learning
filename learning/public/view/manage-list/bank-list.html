@@ -1,4 +1,21 @@
 <h2>Bank List</h2>
 <table>
-    <th></th>
+    <tr>
+            <th>Account No.</th>
+            <th>Bank Name</th>
+            <th>Term</th>
+            <th>Amount</th>
+            <th>Interest rate (%)</th>
+            <th>Transaction date</th>
+            <th>Maturity date</th>
+    </tr>
+    <tr ng-repeat="act in bankList">
+        <td>{{act.accountNo}}</td>
+        <td>{{act.bankName}}</td>
+        <td>{{act.term}}</td>
+        <td>{{act.amount}}</td>
+        <td>{{act.interestRate}}</td>
+        <td>{{act.transactionDate}}</td>
+        <td>{{act.maturityDate}}</td>
+    </tr>
 </table>

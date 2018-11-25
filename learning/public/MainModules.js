@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import {routing} from "./js/routing";
 import {myController2} from "./js/controller2";
 import {detailCtrl} from "./js/detailCtrl";
+import {bankCtrl} from "./js/manage/bankCtrl"
 
 const myCtrl = require("./js/main-ctrl");
 
@@ -18,3 +19,4 @@ angular.module(moduleName).config(routing);
 angular.module(moduleName).controller("myCtrl", myCtrl);
 angular.module(moduleName).controller("myController2", myController2);
 angular.module(moduleName).controller("detailCtrl", detailCtrl);
+angular.module(moduleName).controller("bankCtrl", bankCtrl);
