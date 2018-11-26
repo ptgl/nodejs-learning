@@ -1,21 +1,23 @@
 <h2>Bank List</h2>
-<table>
-    <tr>
-            <th>Account No.</th>
-            <th>Bank Name</th>
-            <th>Term</th>
-            <th>Amount</th>
-            <th>Interest rate (%)</th>
-            <th>Transaction date</th>
-            <th>Maturity date</th>
-    </tr>
-    <tr ng-repeat="act in bankList">
-        <td>{{act.accountNo}}</td>
-        <td>{{act.bankName}}</td>
-        <td>{{act.term}}</td>
-        <td>{{act.amount}}</td>
-        <td>{{act.interestRate}}</td>
-        <td>{{act.transactionDate}}</td>
-        <td>{{act.maturityDate}}</td>
-    </tr>
-</table>
+<div class="container-fluid container-border">
+    <div class="row header">
+        <div class="col-md-1 data">Acct No.</div>
+        <div class="col-md-2 data">Bank Name</div>
+        <div class="col-md-2 data">Term</div>
+        <div class="col-md-2 data">Amount</div>
+        <div class="col-md-1 data">Interest rate (%)</div>
+        <div class="col-md-2 data">Transaction date</div>
+        <div class="col-md-2 data">Maturity date</div>
+    </div>
+    <div class="row" ng-repeat="act in bankList track by $index" ng-class-even="'even-row'">
+            <div class="col-md-1 data">{{act.accountNo}}</div>
+            <div class="col-md-2 data">{{act.bankName}}</div>
+            <div class="col-md-2 data">{{act.term}}</div>
+            <div class="col-md-2 data">{{act.amount}}</div>
+            <div class="col-md-1 data">{{act.interestRate}}</div>
+            <div class="col-md-2 data">{{act.transactionDate}}</div>
+            <div class="col-md-2 data">{{act.maturityDate}}</div>
+        </div>
+</div>
+    
+    
