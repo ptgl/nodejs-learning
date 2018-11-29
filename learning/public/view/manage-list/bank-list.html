@@ -1,6 +1,6 @@
 <h2>Bank List</h2>
 <div class="container-fluid container-border">
-    <div class="row header">
+    <div class="row header-row">
         <div class="col-md-1 data">Acct No.</div>
         <div class="col-md-2 data">Bank Name</div>
         <div class="col-md-2 data">Term</div>
@@ -9,11 +9,12 @@
         <div class="col-md-2 data">Transaction date</div>
         <div class="col-md-2 data">Maturity date</div>
     </div>
-    <div class="row" ng-repeat="act in bankList track by $index" ng-class-even="'even-row'">
+    <div class="row" ng-repeat="act in bankList track by $index" 
+    ng-click="myService.gotoState('manage.detail',{link:'bank',id: act.accountNo, account: act})" ng-class-even="'even-row'">
             <div class="col-md-1 data">{{act.accountNo}}</div>
             <div class="col-md-2 data">{{act.bankName}}</div>
             <div class="col-md-2 data">{{act.term}}</div>
-            <div class="col-md-2 data">{{act.amount}}</div>
+            <div class="col-md-2 data">{{act.amount | number }}</div>
             <div class="col-md-1 data">{{act.interestRate}}</div>
             <div class="col-md-2 data">{{act.transactionDate}}</div>
             <div class="col-md-2 data">{{act.maturityDate}}</div>

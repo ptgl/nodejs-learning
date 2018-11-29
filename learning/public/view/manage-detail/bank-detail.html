@@ -1,0 +1,34 @@
+<h2 style="text-align:center">Account Detail <span style="color:red">{{id}}</span></h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="header-detail">Bank Name</div>
+            <div>{{account.bankName}}</div>
+        </div>
+        <div class="col">
+                <div class="header-detail">Term</div>
+                <div>{{account.term}}</div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col">
+                <div class="header-detail">Amount</div>
+                <div class="highlight">{{account.amount | number}}</div>
+            </div>
+            <div class="col">
+                    <div class="header-detail">Interest rate (%)</div>
+                    <div>{{account.interestRate | number}}</div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col">
+                    <div class="header-detail">Transaction date</div>
+                    <div >{{account.transactionDate}}</div>
+                </div>
+                <div class="col">
+                        <div class="header-detail">Maturity date</div>
+                        <div>{{account.maturityDate}}</div>
+                </div>
+        </div>
+</div>
+

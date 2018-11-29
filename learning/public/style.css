@@ -8,9 +8,15 @@ hr{
     border-top: 2px solid rgba(0, 0, 0, 0.37) !important;
 }
 
-.header{
+.header-row{
     font-weight: bold;
     background-color: lawngreen;
+    font-size: 17px;
+}
+
+.header-detail{
+    font-weight: bold;
+   
     font-size: 17px;
 }
 
@@ -24,4 +30,9 @@ hr{
 
 .even-row{
     background-color: powderblue;
+}
+
+.highlight{
+    color: red;
+    font-weight: bold
 }

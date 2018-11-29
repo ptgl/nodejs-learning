@@ -43,7 +43,7 @@ export function routing($locationProvider, $routeProvider, $stateProvider){
         }
       }
    }).state('manage.listView',{
-    url: '/manage/:link',
+    url: '/manage/:link/listView',
     views:{
       'tabledata@':{
         templateUrl: function($stateParams){
@@ -52,11 +52,24 @@ export function routing($locationProvider, $routeProvider, $stateProvider){
       controllerProvider: function($stateParams){
         return $stateParams.link + 'Ctrl';
       }
-      
     }
-    
-    }
-    
+    } 
+   }).state('manage.detail',{
+     url: '/manage/:link/detail?id',
+     params:{   
+      account: {}
+    },
+
+     views:{
+       'detail@':{
+        templateUrl: function($stateParams){
+          return './view/manage-detail/' + $stateParams.link + '-detail.html'
+      },
+      controllerProvider: function($stateParams){
+        return $stateParams.link + 'DetailCtrl';
+      }
+       }
+     }
      
    })
  }
