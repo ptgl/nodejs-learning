@@ -71,5 +71,22 @@ export function routing($locationProvider, $routeProvider, $stateProvider){
        }
      }
      
-   })
+   }).state('manage.edit',{
+    url: '/manage/:link/edit?id',
+    params:{   
+     account: {}
+   },
+
+    views:{
+      'editContent@':{
+       templateUrl: function($stateParams){
+         return './view/manage-detail/' + $stateParams.link + '-detail-edit.html'
+     },
+     controllerProvider: function($stateParams){
+       return $stateParams.link + 'DetailCtrl';
+     }
+      }
+    }
+    
+  })
  }

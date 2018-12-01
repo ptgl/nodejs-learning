@@ -1,0 +1,21 @@
+<h2 style="text-align:center">Edit Account Detail</h2>
+<form>
+        <div class="form-group">
+          <label for="accountNo">Account Number</label>
+          <input class="form-control" ng-model="account.accountNo" >
+         
+        </div>
+        <div class="form-group">
+          <label >Bank Name</label>
+          <select  class="form-control" ng-model="account.bankName">
+                <!--<option selected>Choose...</option>-->
+                <option ng-repeat="bank in DROPDOWN.bankNames">{{bank}}</option>               
+              </select>
+        </div>
+        <div class="form-group">
+                <label >Transaction Date</label>
+                <md-datepicker ng-model="account.transactionDate" ></md-datepicker>
+              </div>
+        
+        <button ng-click="save()" class="btn btn-primary">Save</button>
+</form>

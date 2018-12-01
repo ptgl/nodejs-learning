@@ -14,7 +14,7 @@ const DATAMOCK ={
   "bankList": [
     {
       "accountNo": 1234,
-      "bankName": "Saigon bank",
+      "bankName": "Saigon Bank",
       "term": "Tiet kiem lai cky 01M thong thuong - 1 thang",
       "amount": 1000000,
       "interestRate": 5.4,
@@ -23,12 +23,12 @@ const DATAMOCK ={
     },
     {
       "accountNo": 4567,
-      "bankName": "ACBbank",
+      "bankName": "ACB Bank",
       "term": "Tiet kiem lai cky 01M thong thuong - 6 thang",
       "amount": 6000000,
       "interestRate": 6.1,
-      "transactionDate": "30/10/2018",
-      "maturityDate": "30/11/2018"
+      "transactionDate": "2018-12-03T17:00:00.000Z",
+      "maturityDate": "2018-12-03T17:00:00.000Z"
     },
     {
       "accountNo": 7899,
@@ -43,4 +43,8 @@ const DATAMOCK ={
 }
 
 
-export {HEROS, DATAMOCK}
+const DROPDOWN = {
+  "bankNames": ["Sacombank","ACB Bank","Saigon Bank"]
+}
+
+export {HEROS, DATAMOCK, DROPDOWN}
