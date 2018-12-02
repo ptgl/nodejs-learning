@@ -1,3 +1,5 @@
+import {CONST, TABLE} from "./const";
+
 module.exports = ['$scope', '$http', '$location', '$state', function($scope, $http, $location, $state){
   
   this.$onInit = function(){
@@ -8,6 +10,44 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
   $scope.message = 'my World';
   $scope.state = '';
 
+ 
+  $scope.convert2Words = (num)=>{
+    var length = num.length;
+    var result = "";
+    if(length == 1 || ['10','11'].includes(num) )
+      result = doiMotChuSo(num);
+    else if (length == 2)
+      result = doiHaiChuSo(num);
+
+    $scope.words = result;
+  }
+
+  function doiMotChuSo(num){
+    return TABLE[num];
+  }
+
+  function doiHaiChuSo(num){
+    var hangDonVi = num % 10;
+    var chuSoHangDonVi = '';
+    var hangChuc = Math.floor(num/10);
+    
+    switch(hangDonVi){
+      case 1:
+        chuSoHangDonVi = "mốt";
+        break;
+      case 5:
+        chuSoHangDonVi = 'lăm';
+        break;
+      default:
+        chuSoHangDonVi = doiMotChuSo(hangDonVi);
+
+    }
+
+    if(hangChuc == 1)
+      return [ TABLE[10], chuSoHangDonVi].join(' ');
+
+    return [doiMotChuSo(hangChuc), "mươi", chuSoHangDonVi].join(' ');
+  }
 
 
   $scope.gotoView = function(path){

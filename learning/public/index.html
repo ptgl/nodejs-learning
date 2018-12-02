@@ -18,6 +18,10 @@
         <dii ui-view="editContent"></dii>
 
     <hr/>
+    <h2>Convert number to words</h2>
+Number: <input ng-model="number"><button ng-click="convert2Words(number)">convert</button>
+<div>{{words}}</div>
+    <hr/>
     <h1>Hello Plunker {{name}}!</h1>
     <p>{{1+2}}</p>
     <button ng-click="send()">Get Data</button>

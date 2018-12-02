@@ -47,4 +47,16 @@ const DROPDOWN = {
   "bankNames": ["Sacombank","ACB Bank","Saigon Bank"]
 }
 
-export {HEROS, DATAMOCK, DROPDOWN}
+const CONST = {
+  "number":[1,2,3,4,5,6,7,8,9,10, 11],
+  "chu":['một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín', 'mười', 'mười một'],
+  "donvi":['mươi','trăm','nghìn', 'triệu']
+}
+var TABLE = [];
+(function init(){
+CONST.number.forEach(num => {
+  TABLE[num] = CONST.chu[num-1];
+})
+})()
+
+export {HEROS, DATAMOCK, DROPDOWN, CONST, TABLE}
