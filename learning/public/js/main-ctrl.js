@@ -18,6 +18,8 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
       result = doiMotChuSo(num);
     else if (length == 2)
       result = doiHaiChuSo(num);
+      else if (length == 3)
+      result = doiBaChuSo(num);
 
     $scope.words = result;
   }
@@ -49,6 +51,25 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
     return [doiMotChuSo(hangChuc), "mươi", chuSoHangDonVi].join(' ');
   }
 
+  function doiBaChuSo(num){
+    var hangTram = Math.floor(num/100);
+    var soDu =  num % 100;
+    var theRest = "";
+    var length = ( ""+soDu).length;
+
+
+    switch(length){
+      case 1:
+        theRest = "lẻ " + doiMotChuSo(soDu);
+        break;
+      case 2:
+        theRest = doiHaiChuSo(soDu);
+        break;
+
+    }
+
+    return [doiMotChuSo(hangTram), "trăm", theRest].join(' ');
+  }
 
   $scope.gotoView = function(path){
     // ex: /view1 or /view2 
