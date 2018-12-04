@@ -14,7 +14,7 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
   $scope.convert2Words = (num)=>{
     var length = num.length;
     var result = "";
-    if(length == 1 || ['10','11'].includes(num) )
+    if(length == 1)
       result = doiMotChuSo(num);
     else if (length == 2)
       result = doiHaiChuSo(num);
@@ -29,6 +29,10 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
   }
 
   function doiHaiChuSo(num){
+
+    if([10, 11].includes(+num))
+      return doiMotChuSo(num);
+
     var hangDonVi = num % 10;
     var chuSoHangDonVi = '';
     var hangChuc = Math.floor(num/10);
@@ -57,14 +61,16 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
     var theRest = "";
     var length = ( ""+soDu).length;
 
-
-    switch(length){
-      case 1:
-        theRest = "lẻ " + doiMotChuSo(soDu);
-        break;
-      case 2:
-        theRest = doiHaiChuSo(soDu);
-        break;
+    if(soDu != 0){
+      switch(length){
+        case 1:
+          theRest = "lẻ " + doiMotChuSo(soDu);
+          break;
+        case 2:
+          theRest = doiHaiChuSo(soDu);
+          break;
+  
+      }
 
     }
 
