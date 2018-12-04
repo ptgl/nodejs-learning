@@ -18,8 +18,8 @@ const DATAMOCK ={
       "term": "Tiet kiem lai cky 01M thong thuong - 1 thang",
       "amount": 1000000,
       "interestRate": 5.4,
-      "transactionDate": "30/10/2018",
-      "maturityDate": "30/11/2018"
+      "transactionDate": "2018-10-05T17:00:00.000Z",
+      "maturityDate": "2018-12-03T17:00:00.000Z"
     },
     {
       "accountNo": 4567,
@@ -36,8 +36,8 @@ const DATAMOCK ={
       "term": "Tiet kiem lai cky 01M thong thuong - 12 thang",
       "amount": 12000000,
       "interestRate": 6.5,
-      "transactionDate": "30/10/2018",
-      "maturityDate": "30/11/2018"
+      "transactionDate": "2017-12-03T17:00:00.000Z",
+      "maturityDate": "2018-11-12T17:00:00.000Z"
     }
   ]
 }
