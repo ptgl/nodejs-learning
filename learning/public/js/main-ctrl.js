@@ -12,16 +12,19 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
 
  
   $scope.convert2Words = (num)=>{
-    var length = num.length;
+    var length = (""+num).length;
     var result = "";
     if(length == 1)
       result = doiMotChuSo(num);
-    else if (length == 2)
+    else if (length == 2) //chuc
       result = doiHaiChuSo(num);
-      else if (length == 3)
+    else if (length == 3) //tram
       result = doiBaChuSo(num);
+    else if (length > 3 && length < 7) //nghin
+      result = doiHangNghin(num);
 
     $scope.words = result;
+    return result;
   }
 
   function doiMotChuSo(num){
@@ -71,10 +74,22 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
           break;
   
       }
-
     }
-
     return [doiMotChuSo(hangTram), "trăm", theRest].join(' ');
+  }
+
+  function doiHangNghin(num){
+    var hangNghin = Math.floor(num/1000);
+    var soDu =  num % 1000;
+    var theRest = "";
+    if(soDu > 0 && soDu < 10)
+      theRest = 'không trăm lẻ ' + doiMotChuSo(soDu);
+    else if ( soDu >= 10 && soDu  <= 99)
+      theRest = 'không trăm ' + doiHaiChuSo(soDu);
+    else if(soDu != 0)
+      theRest = doiBaChuSo(soDu)
+
+    return [$scope.convert2Words(hangNghin), 'nghìn', theRest].join(' ');
   }
 
   $scope.gotoView = function(path){
