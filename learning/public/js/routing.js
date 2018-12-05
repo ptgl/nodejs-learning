@@ -74,7 +74,8 @@ export function routing($locationProvider, $routeProvider, $stateProvider){
    }).state('manage.edit',{
     url: '/manage/:link/edit?id',
     params:{   
-     account: {}
+     account: {},
+     action:''
    },
 
     views:{

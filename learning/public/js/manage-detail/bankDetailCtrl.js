@@ -1,11 +1,20 @@
 import {DROPDOWN, DATAMOCK} from "../const"
 
-bankDetailCtrl.$inject = ['$scope', '$stateParams', '$state'];
-export function bankDetailCtrl($scope, $stateParams, $state){
-    $scope.DROPDOWN = DROPDOWN;
-    $scope.BANKLIST = DATAMOCK.bankList;
-    $scope.id = $stateParams.id;
-    $scope.account = $stateParams.account;
+bankDetailCtrl.$inject = ['$scope', '$stateParams', '$state', 'myService'];
+export function bankDetailCtrl($scope, $stateParams, $state, myService){
+    
+
+    this.$onInit = () => {
+        if(sessionStorage.getItem('bankList') == null){
+            sessionStorage.setItem('bankList', JSON.stringify(DATAMOCK.bankList)) ;
+        }
+        $scope.BANKLIST = JSON.parse(sessionStorage.getItem('bankList'));
+        $scope.DROPDOWN = DROPDOWN;
+    
+        $scope.params = $stateParams ;
+        $scope.account = $stateParams.account;
+
+    }
 
     $scope.save = () =>{
         console.log($scope.account)
@@ -14,7 +23,18 @@ export function bankDetailCtrl($scope, $stateParams, $state){
         var idx = $scope.BANKLIST.findIndex(b => {return b.accountNo == $scope.account.accountNo})
         if(idx != -1 ){
             $scope.BANKLIST[idx] = $scope.account;
+            myService.saveDB('bankList', JSON.stringify($scope.BANKLIST))
             $state.go('manage.detail',{link:'bank',account: $scope.BANKLIST[idx]})
+        }
+    }
+
+    $scope.create = () =>{
+      
+        var idx = $scope.BANKLIST.findIndex(b => {return b.accountNo == $scope.account.accountNo})
+        if(idx == -1 ){
+            $scope.BANKLIST.push($scope.account);
+            myService.saveDB('bankList', JSON.stringify($scope.BANKLIST))
+            $state.go('manage.listView',{link:'bank'})
         }
 
     }

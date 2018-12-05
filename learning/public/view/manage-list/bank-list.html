@@ -1,6 +1,6 @@
 
 <h2>Bank List</h2> 
-<div style="margin-bottom: 10px;"><button type="button" class="btn btn-primary">Add a new account</button></div>
+<div style="margin-bottom: 10px;"><button ng-click="myService.gotoState('manage.edit',{link: link, action:'create', account: {}})" type="button" class="btn btn-primary">Add a new account</button></div>
 
 <div class="container-fluid container-border">
     <div class="row header-row">
@@ -24,8 +24,8 @@
             <div class="col-md-2 data">{{act.maturityDate | date : "dd-MM-yyyy"}}</div>
             <div class="col-md-2 data">
                 <button ng-click="myService.gotoState('manage.detail',{link:'bank',id: act.accountNo, account: act})" type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
-                <button ng-click="myService.gotoState('manage.edit',{link: link, id: act.accountNo, account: act})" type="button" class="btn btn-success"><i class="fa fa-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <button ng-click="myService.gotoState('manage.edit',{link: link, id: act.accountNo, account: act, action: 'edit'})" type="button" class="btn btn-success"><i class="fa fa-edit"></i></button>
+                <button ng-click="remove($index)"type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
             </div>
         </div>
 </div>
