@@ -10,18 +10,88 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
   $scope.message = 'my World';
   $scope.state = '';
 
- 
+  $scope.convert2Words2 = (num)=>{
+    var length = (""+num).length;
+    var result = "";
+    
+    if(length == 1 || [10, 11].includes(+num))
+      result = TABLE[num] || "";
+    else {
+      var theRest = "";
+      var powNumber;
+      
+      if (length == 2) //chuc 10
+        powNumber = 10;
+      else if (length == 3) //tram 100
+        powNumber = Math.pow(10, 2);
+      else if (length > 3 && length < 7) //nghin 1000
+        powNumber = Math.pow(10, 3);
+      else
+        powNumber = Math.pow(10, 6);
+      
+      var soDu = num % powNumber; 
+      var soBiChia =  Math.floor(num/powNumber);
+      
+      //chuc
+      if (length == 2){ 
+        if(soBiChia != 1)
+          theRest = "mươi ";
+        else
+          soBiChia = 10;
+
+        switch(soDu){
+          case 1:
+            theRest += "mốt";
+            break;
+          case 5:
+            theRest += 'lăm';
+            break;
+          default:
+            theRest +=  $scope.convert2Words2(soDu);
+        }
+
+      }else {
+        // tram
+        if (length == 3){
+          theRest += "trăm "
+          if(soDu > 0 && soDu < 10)
+            theRest += "lẻ "
+          }
+        else{
+          if(length > 3 && length < 7){ //nghin
+            theRest += "nghìn "   
+          }else if(length < 10){ //trieu
+            theRest += "triệu ";
+          }
+
+          if(soDu > 0 && soDu < 10)
+              theRest += 'không trăm lẻ ' ;
+            else if ( soDu >= 10 && soDu  <= 99)
+              theRest += 'không trăm ' ;
+        } 
+          
+          theRest +=  $scope.convert2Words2(soDu);
+      }
+        
+      result =  [$scope.convert2Words(soBiChia), theRest].join(' ');
+    }
+    $scope.words = result;
+    return result;
+  }
+
   $scope.convert2Words = (num)=>{
     var length = (""+num).length;
     var result = "";
     if(length == 1)
-      result = doiMotChuSo(num);
-    else if (length == 2) //chuc
+      result = doiMotChuSo(num) || "";
+    else if (length == 2) //chuc 10
       result = doiHaiChuSo(num);
-    else if (length == 3) //tram
+    else if (length == 3) //tram 100
       result = doiBaChuSo(num);
-    else if (length > 3 && length < 7) //nghin
+    else if (length > 3 && length < 7) //nghin 1000
       result = doiHangNghin(num);
+    else
+      result = doiHangTrieu(num); //trieu
 
     $scope.words = result;
     return result;
@@ -83,13 +153,27 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
     var soDu =  num % 1000;
     var theRest = "";
     if(soDu > 0 && soDu < 10)
-      theRest = 'không trăm lẻ ' + doiMotChuSo(soDu);
+      theRest = 'không trăm lẻ ' ;
     else if ( soDu >= 10 && soDu  <= 99)
-      theRest = 'không trăm ' + doiHaiChuSo(soDu);
-    else if(soDu != 0)
-      theRest = doiBaChuSo(soDu)
+      theRest = 'không trăm ' ;
 
+      theRest +=  $scope.convert2Words(soDu);
     return [$scope.convert2Words(hangNghin), 'nghìn', theRest].join(' ');
+  }
+
+  function doiHangTrieu(num){
+    var hangtrieu = Math.floor(num/1000000);
+    var soDu = num % 1000000;
+    var theRest = "";
+
+    if(soDu > 0 && soDu < 10)
+      theRest = 'không trăm lẻ ';
+    else if ( soDu >= 10 && soDu  <= 99)
+      theRest = 'không trăm ';
+
+      theRest +=  $scope.convert2Words(soDu);
+    if((''+hangtrieu).length < 4)
+      return [$scope.convert2Words(hangtrieu), 'triệu', theRest].join(' ');
   }
 
   $scope.gotoView = function(path){
