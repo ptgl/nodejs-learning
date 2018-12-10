@@ -4,6 +4,13 @@ body{
     font-family: initial !important;
 }
 
+input.ng-invalid {
+    border: 1px solid red;
+}
+select.ng-invalid {
+    border: 1px solid red;
+}
+
 .container{
     margin-right: 0px;
     margin-left: 0px;

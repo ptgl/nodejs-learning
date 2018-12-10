@@ -1,14 +1,14 @@
 <h2 style="text-align:center">Edit Account Detail</h2>
 
-<form>
+<form name="myForm">
         <div class="form-group">
           <label for="accountNo">Account Number</label>
-          <input ng-disabled="params.action == 'edit'"  class="form-control" ng-model="account.accountNo" >
+          <input ng-disabled="params.action == 'edit'" required class="form-control" ng-model="account.accountNo" >
          
         </div>
         <div class="form-group">
           <label >Bank Name</label>
-          <select  class="form-control" ng-model="account.bankName">
+          <select  class="form-control" ng-model="account.bankName" required>
                 <!--<option selected>Choose...</option>-->
                 <option ng-repeat="bank in DROPDOWN.bankNames">{{bank}}</option>               
               </select>
@@ -16,15 +16,15 @@
 
         <div class="form-group">
           <label for="accountNo">Term</label>
-          <input class="form-control" ng-model="account.term" ></div>
+          <input class="form-control" ng-model="account.term" required></div>
 
         <div class="form-group">
             <label for="accountNo">Amount</label>
-            <input class="form-control" ng-model="account.amount" ></div>
+            <input class="form-control" ng-model="account.amount" required></div>
 
         <div class="form-group">
               <label for="accountNo">Interest Rate (%)</label>
-              <input class="form-control" ng-model="account.interestRate" ></div>
+              <input class="form-control" ng-model="account.interestRate" required ></div>
 
         <div class="form-group">
                 <label >Transaction Date</label>
@@ -37,5 +37,5 @@
               </div>
         
         <button ng-show="params.action == 'edit'" ng-click="save()" class="btn btn-primary">Save</button>
-        <button ng-show="params.action == 'create'" ng-click="create()" class="btn btn-primary">Create</button>
+        <button ng-show="params.action == 'create'" ng-click="create()" ng-disabled="myForm.$invalid" class="btn btn-primary">Create</button>
 </form>
