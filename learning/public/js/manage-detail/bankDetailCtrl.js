@@ -5,10 +5,10 @@ export function bankDetailCtrl($scope, $stateParams, $state, myService){
     
 
     this.$onInit = () => {
-        if(sessionStorage.getItem('bankList') == null){
-            sessionStorage.setItem('bankList', JSON.stringify(DATAMOCK.bankList)) ;
+        if(myService.getDB('bankList') == null){
+            myService.saveDB('bankList', JSON.stringify(DATAMOCK.bankList));
         }
-        $scope.BANKLIST = JSON.parse(sessionStorage.getItem('bankList'));
+        $scope.BANKLIST = JSON.parse(myService.getDB('bankList'));
         $scope.DROPDOWN = DROPDOWN;
     
         $scope.params = $stateParams ;
