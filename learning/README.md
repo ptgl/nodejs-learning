@@ -15,3 +15,7 @@
 # Note
 * export - import: ES6
 * module.exports - require: ES5
+* sessionStorage vs localStorage:
+  * sessionStorage: store data in sessionStorage, data exists in 1 web session, which means if you close a tab or web browser, all data will be removed
+  * localStorage: stored in localStorage, data exists until explicitly deleted 
+
