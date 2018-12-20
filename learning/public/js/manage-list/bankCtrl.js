@@ -4,6 +4,7 @@ bankCtrl.$inject = ['$scope', 'myService'];
 export function bankCtrl($scope, myService){
     this.$onInit = () =>{
         $scope.myService = myService;
+        $scope.mode = "Guest Mode"
 
         if(myService.getDB('bankList') == null){
             myService.saveDB('bankList', JSON.stringify(DATAMOCK.bankList));

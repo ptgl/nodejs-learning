@@ -1,6 +1,7 @@
 import {CONST, TABLE} from "./const";
 
-module.exports = ['$scope', '$http', '$location', '$state', function($scope, $http, $location, $state){
+module.exports = ['$scope', '$http', '$location', '$state', '$mdDialog', 'myService',
+function($scope, $http, $location, $state, $mdDialog, myService){
   
   this.$onInit = function(){
     $state.go('manage');
@@ -186,7 +187,7 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
     $state.go('welcome');
   }  
 
-  $scope.gotoSate = function(name,param){
+  $scope.gotoState = function(name,param){
     $state.go(name, param);
   }  
 
@@ -197,6 +198,12 @@ module.exports = ['$scope', '$http', '$location', '$state', function($scope, $ht
   }
     $http(req).then(function(result){
       $scope.message = result.data.content;
+      console.log(result);
+    })
+  }
+
+  $scope.test = ()=>{
+    myService.testES().then((result)=>{
       console.log(result);
     })
   }
