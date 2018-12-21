@@ -23,7 +23,26 @@ app.get('/getES/:link/:id', (req, res)=>{
    console.log(url)
   connectionService.get(url)
   .then( (result) => {
-      res.status(200).send(result.data);
+      res.status(200).send(result.data._source);
+  }, (err) => {
+     res.status(404).end();
+  });
+})
+
+app.get('/getAllES/:link', (req, res)=>{
+  var params = req.params;
+  var url = [es, params.link, '_search'].join('/');
+   console.log(url)
+  connectionService.get(url)
+  .then( (result) => {
+    
+    var hits = result.data.hits.hits;
+    var resultSearch = [];
+    hits.forEach(ele => {
+      resultSearch.push(ele._source);
+    });
+
+      res.status(200).send(resultSearch);
   }, (err) => {
      res.status(404).end();
   });
@@ -36,7 +55,7 @@ app.post('/saveES/:link/:id', bodyParser.json(), (req, res)=>{
    console.log(url)
   connectionService.post(url, null, body)
   .then( (result) => {
-      res.status(200).send(result.data);
+      res.status(200).send(result.data._source);
   }, (err) => {
      res.status(404).end();
   });

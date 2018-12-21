@@ -1,11 +1,22 @@
+import {CONST} from './const'
+
+
 export class DAO{
-    //constructor(){}
+    constructor($q, $http){
+        this.$q = $q;
+        this.$http = $http;
+    }
+
+    
     dbFactory(mode){
         switch (mode){
-            case 'session':
+            case CONST.DB_MODE.SESSIONSTORAGE:
                 return new SessionStorage();
-            case 'local':
+            case CONST.DB_MODE.LOCALSTORAGE:
                 return new LocalStorage();
+            default:
+                return new ESStorage(this.$q, this.$http)
+            
         }
             
         
@@ -23,6 +34,7 @@ class SessionStorage{
 }
 
 class LocalStorage{
+
     saveDB(key, value){
             localStorage.setItem(key, value);
     }
@@ -30,4 +42,56 @@ class LocalStorage{
     getDB(key){
         return localStorage.getItem(key);
     }
+}
+
+//ESStorage.$inject = ['$q', '$http']
+class ESStorage{
+    constructor($q, $http){
+        this.$q = $q;
+        this.$http = $http;
+    }
+
+    executeRequest(method, url, data, params){
+        
+		var deferred = this.$q.defer();
+        var req = {
+            'method': method,
+            'url': url,
+            'data': data,
+            'params': params
+        }
+          this.$http(req).then(function(result){
+            
+            console.log(result);
+            deferred.resolve(result);
+          })
+          return  deferred.promise;
+    }
+
+    getDB(url){ //url = 'bank/001'
+        var deferred = this.$q.defer();
+
+        this.executeRequest('GET', CONST.API.GET_ES + url).then((result)=>{
+            deferred.resolve(result);
+        })
+        return  deferred.promise;
+    }
+
+    getAllDB(url){ //url = 'bank'
+        var deferred = this.$q.defer();
+
+        this.executeRequest('GET', CONST.API.GET_ALL_ES + url).then((result)=>{
+            deferred.resolve(result);
+        })
+        return  deferred.promise;
+    }
+
+    saveDB(url, data){
+        var deferred = this.$q.defer();
+        this.executeRequest('POST', CONST.API.SAVE_ES + url, data).then((result)=>{
+            deferred.resolve(result);
+        })
+        return  deferred.promise;
+    }
+
 }

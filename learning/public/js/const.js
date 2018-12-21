@@ -50,7 +50,17 @@ const DROPDOWN = {
 const CONST = {
   "number":[1,2,3,4,5,6,7,8,9,10, 11],
   "chu":['một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín', 'mười', 'mười một'],
-  "donvi":['mươi','trăm','nghìn', 'triệu']
+  "donvi":['mươi','trăm','nghìn', 'triệu'],
+  "API":{
+    "GET_ES": "http://localhost:3000/getES/",
+    "SAVE_ES": "http://localhost:3000/saveES/",
+    "GET_ALL_ES":"http://localhost:3000/getAllES/"
+  },
+  "DB_MODE": {
+    "LOCALSTORAGE": "local",
+    "SESSIONSTORAGE": "session",
+    "ES" : "es"
+  }
 }
 var TABLE = [];
 (function init(){
