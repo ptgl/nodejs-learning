@@ -2,13 +2,13 @@ import { func } from "prop-types";
 import { DAO } from "./DAO";
 import { CONST} from "./const"
 
-mainService.$inject = ['$state', '$q', '$http', 'DAOService'];
-export function mainService($state, $q, $http, DAOService){
+mainService.$inject = ['$state', '$q', '$http'];
+export function mainService($state, $q, $http){
 
     
         console.log('init')
         var dao = new DAO($q, $http);
-        this.mode = CONST.DB_MODE.ES;
+        this.mode = CONST.DB_MODE.LOCALSTORAGE;
         this.storage = dao.dbFactory(this.mode);
        
         
@@ -19,7 +19,7 @@ export function mainService($state, $q, $http, DAOService){
 
     this.saveDB = function(key, value){
         if(this.mode != CONST.DB_MODE.ES)
-            storage.saveDB(key, value);  
+            this.storage.saveDB(key, value);  
         else{
             var deferred = $q.defer();
             this.storage.saveDB(key, value).then((result)=>{
@@ -31,7 +31,7 @@ export function mainService($state, $q, $http, DAOService){
 
     this.getDB = function(key){
         if(this.mode != CONST.DB_MODE.ES)
-            return storage.getDB(key);
+            return this.storage.getDB(key);
         else{
             var deferred = $q.defer();
             this.storage.getDB(key).then((result)=>{
