@@ -8,9 +8,25 @@ export function mainService($state, $q, $http){
     
         console.log('init')
         var dao = new DAO($q, $http);
-        this.mode = CONST.DB_MODE.LOCALSTORAGE;
+        //this.mode = CONST.DB_MODE.LOCALSTORAGE;
+        this.mode = CONST.DB_MODE.ES;
         this.storage = dao.dbFactory(this.mode);
        
+    this.initDB = ()=>{
+        var deferred = $q.defer();
+        if(this.mode == CONST.DB_MODE.ES){
+            this.storage.getAllDB('demo').then(result=>{
+                deferred.resolve(result);
+            })
+            
+        }else{
+            if(this.getDB('bankList') == null){
+                this.saveDB('bankList', JSON.stringify(DATAMOCK.bankList));
+            }
+            deferred.resolve( JSON.parse(this.getDB('bankList')));
+        }
+        return  deferred.promise;
+    }
         
     this.gotoState = function(name,param){
         
