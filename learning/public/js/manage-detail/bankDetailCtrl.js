@@ -33,11 +33,19 @@ export function bankDetailCtrl($scope, $stateParams, $state, myService){
 
     $scope.create = () =>{
       if(myService.mode == CONST.DB_MODE.ES){
-        var url = 'demo/'+$scope.account.accountNo;
+        var url = CONST.URL.TYPE_ES.BANK + '/'+$scope.account.accountNo;
         myService.getDB(url).then(result=> {
-            console.log(result);
+            alert('Account existed!!!');
         },(err)=>{
-            alert('error')
+            console.log(err);
+            if(err.status == 404){
+                myService.saveDB(url, $scope.account).then(res=>{
+                    if(res){
+                        alert('Account created successfully!')
+                        $scope.account = {};
+                    }
+                })
+            }
         })
       }else{
           var idx = $scope.BANKLIST.findIndex(b => {return b.accountNo == $scope.account.accountNo})

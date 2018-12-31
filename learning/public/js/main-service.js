@@ -33,6 +33,10 @@ export function mainService($state, $q, $http){
         $state.go(name, param);
       }  
 
+/**
+ * ES mode: key is url ':type/:id', value is data
+ * Storage mode: key, value is {key: value}
+ */
     this.saveDB = function(key, value){
         if(this.mode != CONST.DB_MODE.ES)
             this.storage.saveDB(key, value);  
@@ -45,16 +49,35 @@ export function mainService($state, $q, $http){
         }   
     }
 
+/**
+ * ES mode: key is url ':type/:id'
+ * storage mode: to search by key in storage 
+ */ 
     this.getDB = function(key){
         if(this.mode != CONST.DB_MODE.ES)
             return this.storage.getDB(key);
         else{
             var deferred = $q.defer();
-            this.storage.getDB(key).then((result)=>{
+            this.storage.getDB(key).then(result=>{
             deferred.resolve(result);
+        }, err =>{
+            deferred.reject(err);
         })
         return  deferred.promise;
         }
+    }
+
+    /**
+     * Format URL: ':type/:id'
+     *  */   
+    this.deleteById = (url)=>{
+        var deferred = $q.defer();
+        this.storage.deleteById(url).then(rs => {
+            deferred.resolve(rs);
+        }, err=>{
+            deferred.reject(err);
+        })
+        return  deferred.promise;
     }
 
     this.executeRequest = function(method, url, data, params){
@@ -80,6 +103,8 @@ export function mainService($state, $q, $http){
         
         this.storage.getDB(url).then((result)=>{
             deferred.resolve(result);
+        }, err=>{
+            deferred.reject(err);
         })
         return  deferred.promise;
     }

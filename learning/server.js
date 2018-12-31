@@ -25,6 +25,18 @@ app.get('/getES/:link/:id', (req, res)=>{
   .then( (result) => {
       res.status(200).send(result.data._source);
   }, (err) => {
+     res.status(404).send(err.status);
+  });
+})
+
+app.delete('/deleteES/:link/:id', (req, res)=>{
+  var params = req.params;
+  var url = [es, params.link, params.id].join('/');
+   console.log(url)
+  connectionService.delete(url)
+  .then( (result) => {
+      res.status(200).send(result.status);
+  }, (err) => {
      res.status(404).end();
   });
 })
@@ -32,7 +44,7 @@ app.get('/getES/:link/:id', (req, res)=>{
 app.get('/getAllES/:link', (req, res)=>{
   var params = req.params;
   var url = [es, params.link, '_search'].join('/');
-   console.log(url)
+  console.log(url);
   connectionService.get(url)
   .then( (result) => {
     

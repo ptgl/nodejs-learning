@@ -19,6 +19,12 @@ class RestClient{
         return executeRequest(url, 'get', param, null, header);
     }
 
+    delete(url, param, header) {
+        header = header || {};
+
+        return executeRequest(url, 'delete', param, null, header);
+    }
+
     post(url, param, body, header) {
         header = header || {};
         header[HEADER_PROPERTIES.CONTENT_TYPE] = CONTENT_TYPE.JSON_APPLICATION;

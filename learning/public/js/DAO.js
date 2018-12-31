@@ -64,6 +64,8 @@ class ESStorage{
             
             console.log(result);
             deferred.resolve(result);
+          }, error =>{
+            deferred.reject(error);
           })
           return  deferred.promise;
     }
@@ -73,6 +75,8 @@ class ESStorage{
 
         this.executeRequest('GET', CONST.API.GET_ES + url).then((result)=>{
             deferred.resolve(result);
+        },(err)=>{
+            deferred.reject(err);
         })
         return  deferred.promise;
     }
@@ -81,7 +85,9 @@ class ESStorage{
         var deferred = this.$q.defer();
 
         this.executeRequest('GET', CONST.API.GET_ALL_ES + url).then((result)=>{
-            deferred.resolve(result);
+            deferred.resolve(result.data);
+        }, (err)=>{
+            deferred.reject(err);
         })
         return  deferred.promise;
     }
@@ -90,6 +96,18 @@ class ESStorage{
         var deferred = this.$q.defer();
         this.executeRequest('POST', CONST.API.SAVE_ES + url, data).then((result)=>{
             deferred.resolve(result);
+        }, (err)=>{
+            deferred.reject(err);
+        })
+        return  deferred.promise;
+    }
+
+    deleteById(url, data){
+        var deferred = this.$q.defer();
+        this.executeRequest('DELETE', CONST.API.DELETE_ES + url, data).then((result)=>{
+            deferred.resolve(result);
+        }, (err)=>{
+            deferred.reject(err);
         })
         return  deferred.promise;
     }

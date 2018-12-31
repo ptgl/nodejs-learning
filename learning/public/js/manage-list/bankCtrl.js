@@ -1,4 +1,4 @@
-import {DATAMOCK} from "../const";
+import { CONST} from "../const";
 
 bankCtrl.$inject = ['$scope', 'myService'];
 export function bankCtrl($scope, myService){
@@ -15,8 +15,20 @@ export function bankCtrl($scope, myService){
 
     $scope.remove = (index) => {
         $scope.bankList.splice(index,1);
-
-        myService.saveDB('bankList', JSON.stringify($scope.bankList))
+        
+        if(myService.mode == CONST.DB_MODE.ES){
+            var url = CONST.URL.TYPE_ES.BANK + '/' + $scope.bankList[index].accountNo;
+            myService.deleteById(url).then(res=>{
+                if(res){
+                   
+                }
+            },err=>{
+                console.log(err);
+            })
+        }else{
+            
+            myService.saveDB('bankList', JSON.stringify($scope.bankList))
+        }
     }
     
 }
