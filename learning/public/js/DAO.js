@@ -95,7 +95,17 @@ class ESStorage{
     saveDB(url, data){
         var deferred = this.$q.defer();
         this.executeRequest('POST', CONST.API.SAVE_ES + url, data).then((result)=>{
-            deferred.resolve(result);
+            deferred.resolve(result.data);
+        }, (err)=>{
+            deferred.reject(err);
+        })
+        return  deferred.promise;
+    }
+
+    create(url, data){
+        var deferred = this.$q.defer();
+        this.executeRequest('POST', CONST.API.CREATE_NEW + url, data).then((result)=>{
+            deferred.resolve(result.data);
         }, (err)=>{
             deferred.reject(err);
         })
