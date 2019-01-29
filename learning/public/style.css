@@ -11,6 +11,10 @@ select.ng-invalid {
     border: 1px solid red;
 }
 
+.nav-item:hover{
+    background: red;
+}
+
 .container{
     margin-right: 0px;
     margin-left: 0px;

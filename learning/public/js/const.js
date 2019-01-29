@@ -67,7 +67,7 @@ const CONST = {
   },
   "URL":{
     "TYPE_ES":{
-      "BANK": "demo",
+      "BANK": "bank",
       "BOOK": "book"
     }
     

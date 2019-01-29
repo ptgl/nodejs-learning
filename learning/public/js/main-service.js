@@ -15,7 +15,7 @@ export function mainService($state, $q, $http){
     this.initDB = ()=>{
         var deferred = $q.defer();
         if(this.mode == CONST.DB_MODE.ES){
-            this.storage.getAllDB('demo').then(result=>{
+            this.storage.getAllDB(CONST.URL.TYPE_ES.BANK).then(result=>{
                 deferred.resolve(result);
             })
             
