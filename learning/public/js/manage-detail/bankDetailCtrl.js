@@ -21,32 +21,42 @@ export function bankDetailCtrl($scope, $stateParams, $state, myService){
         console.log($scope.account)
         console.log(JSON.stringify($scope.account));
 
-        var idx = $scope.BANKLIST.findIndex(b => {return b.accountNo == $scope.account.accountNo})
-        if(idx != -1 ){
-            $scope.BANKLIST[idx] = $scope.account;
-            myService.saveDB('bankList', JSON.stringify($scope.BANKLIST))
-            $state.go('manage.detail',{link:'bank',account: $scope.BANKLIST[idx]})
+        if(myService.mode == CONST.DB_MODE.ES){
+            var url = CONST.URL.TYPE_ES.BANK + '/'+ $scope.account.accountNo;
+            myService.saveDB(url, $scope.account).then(res=>{
+                if(res.hasOwnProperty('message')){
+                    alert(res.message);
+                }else{
+                    $state.go('manage.detail',{link:'bank',account: res})
+                }
+            })
+
         }else{
-            alert('Account doesn\'t exist!!!')
+            var idx = $scope.BANKLIST.findIndex(b => {return b.accountNo == $scope.account.accountNo})
+            if(idx != -1 ){
+                $scope.BANKLIST[idx] = $scope.account;
+                myService.saveDB('bankList', JSON.stringify($scope.BANKLIST))
+                $state.go('manage.detail',{link:'bank',account: $scope.BANKLIST[idx]})
+            }else{
+                alert('Account doesn\'t exist!!!')
+            }
+
         }
+
     }
 
     $scope.create = () =>{
       if(myService.mode == CONST.DB_MODE.ES){
-        var url = CONST.URL.TYPE_ES.BANK + '/'+$scope.account.accountNo;
-        myService.getDB(url).then(result=> {
-            alert('Account existed!!!');
-        },(err)=>{
-            console.log(err);
-            if(err.status == 404){
-                myService.saveDB(url, $scope.account).then(res=>{
-                    if(res){
-                        alert('Account created successfully!')
-                        $scope.account = {};
-                    }
-                })
+        var url = CONST.URL.TYPE_ES.BANK + '/'+ $scope.account.accountNo;
+        myService.createES(url, $scope.account).then(res => {
+            if(res.hasOwnProperty('message')){
+                alert(res.message);
+            }else{
+                alert('Account created successfully!');
+                $state.go('manage.listView',{link:'bank'})
             }
         })
+      
       }else{
           var idx = $scope.BANKLIST.findIndex(b => {return b.accountNo == $scope.account.accountNo})
           if(idx == -1 ){

@@ -65,11 +65,45 @@ app.post('/saveES/:link/:id', bodyParser.json(), (req, res)=>{
   var body = JSON.stringify(req.body);
   var url = [es, params.link, params.id].join('/');
    console.log(url)
-  connectionService.post(url, null, body)
+
+   connectionService.get(url).then(result=>{
+     connectionService.post(url, null, body)
+     .then( (result) => {
+         res.status(200).send(body);
+     }, (err) => {
+        res.status(404).end();
+     });
+
+   }, err => {
+      if(err.status == 404){
+        res.send({message: 'Account doesn\'t existed'})
+      }else res.status(404).end();
+   })
+
+
+
+})
+
+app.post('/create/:link/:id', bodyParser.json(), (req, res)=>{
+  
+  var params = req.params;
+  var body = JSON.stringify(req.body);
+  var url = [es, params.link, params.id].join('/');
+  console.log(url);
+
+  connectionService.get(url)
   .then( (result) => {
-      res.status(200).send(result.data._source);
+      res.status(200).send({message: 'Account existed'});
   }, (err) => {
-     res.status(404).end();
+      if(err.status == 404){
+        connectionService.post(url, null, body)
+        .then( (result) => {
+            res.status(200).send(result.status);
+        }, (err) => {
+           res.status(404).end();
+        });
+      }else
+        res.status(404).send(err.status);
   });
 })
 

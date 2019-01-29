@@ -44,10 +44,25 @@ export function mainService($state, $q, $http){
             var deferred = $q.defer();
             this.storage.saveDB(key, value).then((result)=>{
             deferred.resolve(result);
+        }, err => {
+            deferred.reject(err)
         })
         return  deferred.promise;
         }   
     }
+
+    /**
+ * ES mode: key is url ':type/:id', value is data
+ * Storage mode: key, value is {key: value}
+ */
+    this.createES = function(key, value){        
+            var deferred = $q.defer();
+            this.storage.create(key, value).then((result)=>{
+            deferred.resolve(result);
+        })
+        return  deferred.promise;
+    }  
+    
 
 /**
  * ES mode: key is url ':type/:id'

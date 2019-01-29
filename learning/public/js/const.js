@@ -56,6 +56,7 @@ const CONST = {
     "SAVE_ES": origin + "/saveES/",
     "DELETE_ES": origin + "/deleteES/",
     "GET_ALL_ES": origin + "/getAllES/",
+    "CREATE_NEW": origin + "/create/",
   },
   "DB_MODE": {
     "LOCALSTORAGE": "local",

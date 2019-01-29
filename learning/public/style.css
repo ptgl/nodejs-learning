@@ -11,14 +11,20 @@ select.ng-invalid {
     border: 1px solid red;
 }
 
-.nav-item:hover{
-    background: red;
+.nav-item a.nav-link:hover{
+    /*font-size: 20px;*/
+    color:red !important;
+    font-weight: bold;
 }
 
 .container{
     margin-right: 0px;
     margin-left: 0px;
     max-width: 100% !important;
+}
+
+.form-group{
+    padding: 0px 150px; 
 }
 
 hr{

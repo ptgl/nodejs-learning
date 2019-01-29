@@ -14,19 +14,17 @@ export function bankCtrl($scope, myService){
     };
 
     $scope.remove = (index) => {
-        $scope.bankList.splice(index,1);
-        
         if(myService.mode == CONST.DB_MODE.ES){
             var url = CONST.URL.TYPE_ES.BANK + '/' + $scope.bankList[index].accountNo;
             myService.deleteById(url).then(res=>{
                 if(res){
-                   
+                    $scope.bankList.splice(index,1);
                 }
             },err=>{
                 console.log(err);
             })
         }else{
-            
+            $scope.bankList.splice(index,1);
             myService.saveDB('bankList', JSON.stringify($scope.bankList))
         }
     }
